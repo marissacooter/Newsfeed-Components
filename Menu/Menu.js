@@ -45,7 +45,7 @@ function menuComp(menuItems){
   })
   menuDiv.append(ul)
   const menuBtn = document.querySelector(".menu-button")
-  menuBtn.addEventListener("dblclick", () => menuDiv.classList.toggle("menu--open"));
+  menuBtn.addEventListener("click", () => menuDiv.classList.toggle("menu--open"));
 
   return menuDiv;
 
