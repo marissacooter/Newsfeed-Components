@@ -85,7 +85,18 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: 'Blah Blah Blah',
+    date: 'March 11th, 2020',
+    firstParagraph: 'Blah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah Blah',
+
+    secondParagraph: 'Blah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah Blah',
+
+    thirdParagraph: 'Blah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah BlahBlah Blah Blah'
   }
+
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -113,41 +124,54 @@ const data = [
 
 */
 
-// STEP ONE:
-function createComponent(articleTitle, articleDate, firstParagraph, secondParagraph, thirdParagraph){
+function createComponent(object){
+  // ARTICLE:
   const article = document.createElement('div');
-  const articleTitle = document.createElement('h2');
-  const articleDate = document.createElement('p');
-  const firstParagraph = document.createElement('p');
-  const secondParagraph = document.createElement('p');
-  const thirdParagraph = document.createElement('p');
-  const btnExpand = document.createElement('span');
+  article.classList.add('article');
 
+  // TITLE:
+  const articleTitle = document.createElement('h2');
+  articleTitle.classList.add('articleTitle');
+  articleTitle.textContent = object.title;
   article.append(articleTitle);
+
+  // DATE:
+  const articleDate = document.createElement('p');
+  articleDate.classList.add('articleDate');
+  articleDate.textContent = object.date;
   article.append(articleDate);
-  article.append(firstParapraph);
+
+  // FIRST PARAGRAPH:
+  const firstParagraph = document.createElement('p');
+  firstParagraph.textContent = object.firstParagraph;
+  article.append(firstParagraph);
+
+  // SECOND PARAGRAPH:
+  const secondParagraph = document.createElement('p');
+  secondParagraph.textContent = object.secondParagraph;
   article.append(secondParagraph);
+
+  // THIRD PARAGRAPH:
+  const thirdParagraph = document.createElement('p');
+  thirdParagraph.textContent = object.thirdParagraph;
   article.append(thirdParagraph);
+
+  // BUTTON:
+  const btnExpand = document.createElement('span');
+  btnExpand.classList.add('expandButton');
+  btnExpand.textContent = "expand";
+  btnExpand.addEventListener("click",() =>{
+    article.classList.toggle("article-open");
+  })
   article.append(btnExpand);
 
-  article.classList.add('article');
-  title.classList.add('articleTitle');
-  date.classList.add('articleDate');
-  firstParagraph.classList.add('firstParagraph');
-  secondParagraph.classList.add('secondParaph');
-  thirdParagraph.classList.add('thirdParagraph');
-  btnExpand.classList.add('expandButton');
-
-  articleTitle.textContent = '\u25bc';
-  articleDate.textContent = '\u25bc';
-  firstParagraph.textContent = '\u25bc';
-  secondParagraph.textContent = '\u25bc';
-  thirdParagraph.textContent = '\u25bc';
-  btnExpand.textContent = '\u25bc';
-
-  return createComponent;
-
+  return article;
 }
+
+// CREATE VARIABLE TO HOLD MAPS:
+const holder = data.map(article => createComponent(article));
+const newArticle = document.querySelector('div.articles');
+holder.forEach(article => newArticle.append(article));
 
 
 
