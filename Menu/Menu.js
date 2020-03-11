@@ -47,7 +47,7 @@ function menuComp(menuItems){
   const menuBtn = document.querySelector(".menu-button")
   menuBtn.addEventListener("click", () => menuDiv.classList.toggle("menu--open"));
 
-  return menuDiv;
+  return menuDiv
 
 }
 
